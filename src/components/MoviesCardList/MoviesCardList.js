@@ -16,16 +16,18 @@ function MoviesCardList({isLike, onLikeClick}) {
 
   return (
     <section className="movies-card-list">
-      <ul className="movies-card-list__container">
-        {cards.map((card, i) =>(
-          <MoviesCard
-            key = {card.id}
-            isLike = {isLike}
-            onLikeClick = {onLikeClick}
-          />
-        ))}
-      </ul>
-      <button className="movies-card-list__more-button">Ещё</button>
+      <div className="movies-card-list__container">
+        <ul className="movies-card-list__content-container">
+          {cards.map((card, i) =>(
+            <MoviesCard
+              key = {card.id}
+              isLike = {isLike}
+              onLikeClick = {onLikeClick}
+            />
+          ))}
+        </ul>
+        <button className="movies-card-list__more-button">Ещё</button>
+      </div>
     </section>
   )
 }

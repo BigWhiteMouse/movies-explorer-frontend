@@ -28,15 +28,17 @@ function Techs() {
 
   return (
     <section className="techs" id="techs">
-      <MainTitle titleName="Технологии"/>
       <div className="techs__container">
-        <h3 className="techs__title">7 технологий</h3>
-        <p className="techs__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном
-          проекте.</p>
-        <div className="techs__info-container">
-          {techInfo.map((message, i) => (
-            <div key={message.id} className="techs__info">{message.name}</div>
-          ))}
+        <MainTitle titleName="Технологии"/>
+        <div className="techs__content-container">
+          <h3 className="techs__title">7 технологий</h3>
+          <p className="techs__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном
+            проекте.</p>
+          <div className="techs__info-container">
+            {techInfo.map((message, i) => (
+              <div key={message.id} className="techs__info">{message.name}</div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

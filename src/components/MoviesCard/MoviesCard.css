@@ -44,6 +44,12 @@
 
 .movies-card__like {
   cursor: pointer;
+  margin-top: 10px;
+}
+
+.movies-card__button {
+  border: 0;
+  background-color: #FFFFFF;
 }
 
 @media (max-width: 768px) {

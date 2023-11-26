@@ -31,12 +31,14 @@ function Portfolio() {
                 "portfolio__link-arrow-container"}>
                 <a
                   key={message.id}
-                  className="portfolio__link"
                   href={message.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                >{message.name}</a>
-                <img alt="Иконка стрелка" src={landingArrow} className="portfolio__arrow"/>
+                  className="portfolio__link"
+                >
+                  <p className="portfolio__link-text">{message.name}</p>
+                  <img alt="Иконка стрелка" src={landingArrow} className="portfolio__arrow"/>
+                </a>
               </div>
             </li>
           ))}

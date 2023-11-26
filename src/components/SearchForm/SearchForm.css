@@ -1,5 +1,7 @@
 .search-form {
   padding: 70px 70px 48px 70px;
+  max-width: 1280px;
+  margin: 0 auto 0 auto;
 }
 
 .search-form__container {
@@ -17,9 +19,13 @@
   height: 34px;
 }
 
-.search-form__input:active, :hover, :focus {
+.search-form__input:active, :hover {
   outline: 0;
   outline-offset: 0;
+}
+
+.search-form__input:focus {
+  outline: 1px solid #E8E8E8;
 }
 
 .search-form__input::placeholder {

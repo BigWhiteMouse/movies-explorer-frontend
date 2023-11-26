@@ -48,18 +48,20 @@ function App() {
         onCloseBurgerClick = {handleCloseBurgerClick}
         isLightTheme
       />}
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/movies" element={<Movies
-          isLike = {isLike}
-          onLikeClick = {handleLikeClick}
-        />} />
-        <Route path="/saved-movies" element={<SavedMovies />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <main className="content">
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/movies" element={<Movies
+            isLike = {isLike}
+            onLikeClick = {handleLikeClick}
+          />} />
+          <Route path="/saved-movies" element={<SavedMovies />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
       {(location.pathname === "/" || location.pathname === "/movies" || location.pathname === "/saved-movies")
         && <Footer />}
     </div>

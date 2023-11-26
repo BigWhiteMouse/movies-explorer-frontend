@@ -20,10 +20,14 @@ function MoviesCard({isLike, onLikeClick}) {
         <div className="movies-card__like-container">
           <p className="movies-card__name">33 слова о дизайне</p>
           {location.pathname === '/movies' &&
-            <img className="movies-card__like"
-               alt="Лайк" src={isLike ? movieLikeActive : movieLike} onClick={handleLikeClick}/>}
+            <button className="movies-card__button">
+              <img className="movies-card__like"
+                 alt="Лайк" src={isLike ? movieLikeActive : movieLike} onClick={handleLikeClick}/>
+            </button>}
           {location.pathname === '/saved-movies' &&
-            <img className="movies-card__delete" alt="Иконка удаления фильма" src={deleteMovie}/>}
+            <button className="movies-card__button">
+              <img className="movies-card__delete" alt="Иконка удаления фильма" src={deleteMovie}/>
+            </button>}
         </div>
       </div>
       <p className="movies-card__duration">1ч42м</p>

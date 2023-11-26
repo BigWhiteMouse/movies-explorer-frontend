@@ -4,6 +4,14 @@
   height: 172px;
 }
 
+.footer__container {
+  /*я надеюсь, это имеется ввиду под максимальной шириной контента, соответственно,
+  задаю ее каждому блоку в отдельности, потому что у блоков разный backgound-color, если задать ширину всему блоку
+  content, то на более широких экранах будут белые уши. ну и я надеюсь, что эта ширина должна быть 1280px...*/
+  max-width: 1280px;
+  margin: 0 auto 0 auto;
+}
+
 .footer__text-container {
   border-bottom: 1px solid #E8E8E8;
   max-width: 1140px;
@@ -19,7 +27,7 @@
   margin: 0 0 20px 0;
 }
 
-.footer__container {
+.footer__content-container {
   display: flex;
   justify-content: space-between;
   margin-top: 21px;
@@ -65,7 +73,7 @@
     margin: 0 0 21px 0;
   }
 
-  .footer__container {
+  .footer__content-container {
     flex-direction: column-reverse;
     margin-top: 30px;
     align-items: center;
