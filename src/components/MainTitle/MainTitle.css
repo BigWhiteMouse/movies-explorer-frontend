@@ -1,0 +1,37 @@
+.main-title {
+  max-width: 1140px;
+  border-bottom: 1px solid #000;
+}
+
+.main-title__title {
+  color: #000;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0 0 23px 0;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    max-width: 668px;
+    border-bottom: 1px solid #000;
+  }
+
+  .main-title__title {
+    margin: 0 0 22px 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .main-title {
+    max-width: 284px;
+  }
+
+  .main-title__title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    margin: 0 0 28px 0;
+  }
+}

@@ -1,0 +1,126 @@
+.navigation-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 364px;
+}
+
+.navigation__movies-link-container{
+  padding: 28px 0 28px 0;
+  margin-left: 60px; /*for pixel perfect*/
+}
+
+.navigation__movies-link {
+  color: #FFF;
+  text-align: right;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  padding-left: 17px;
+  text-decoration: none;
+}
+
+.navigation__movies-link:hover {
+  opacity: 0.5;
+}
+
+.navigation__movies-link_burger:hover {
+  opacity: 0.5;
+}
+
+.navigation__account-icon{
+  padding-top: 10px;
+  margin-right: -14px; /*for pixel perfect*/
+}
+
+.navigation__movies-link_theme_light {
+  color: #000;
+}
+
+.navigation-container_theme_light {
+  gap: 350px; /*for pixel perfect*/
+}
+
+.navigation__movies-link_active {
+  font-weight: 500;
+}
+
+@media (max-width: 960px) {
+  .navigation-container {
+    gap: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    display: none;
+  }
+
+  .navigation_burger {
+    display: flex;
+    position: fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    justify-content: flex-end;
+    z-index: 999;
+  }
+
+  .navigation-container_burger {
+    display: flex;
+    width: 68%;
+    background: #FFF;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navigation__movies-link-container_burger {
+    display: flex;
+    flex-direction: column;
+    margin-top: 111px;
+    margin-bottom: 537px;
+  }
+
+  .navigation__closeBurgerIcon {
+    width: 22px;
+    height: 22px;
+    align-self: flex-end;
+    margin: 26px 27px 0 0;
+  }
+
+  .navigation__movies-link_burger {
+    color: #000;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 28px;
+    text-decoration: none;
+  }
+
+  .navigation__movies-link_burger_active {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 320px) {
+  .navigation-container_burger {
+    width: 100%;
+  }
+
+  .navigation__closeBurgerIcon {
+    margin: 17px 18px 0 0;
+  }
+
+  .navigation__movies-link-container_burger {
+    margin-top: 105px;
+    margin-bottom: 372px;
+  }
+
+  .navigation__movies-link_burger {
+    margin-bottom: 24px;
+  }
+}
