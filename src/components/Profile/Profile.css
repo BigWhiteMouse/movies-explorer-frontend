@@ -1,0 +1,150 @@
+.profile {
+  margin: 74px auto 70px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1280px;
+}
+
+.profile__header {
+  color: #000;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+
+.profile__credentials {
+  list-style-type: none;
+  margin: 106px 0 0 0;
+  padding: 0;
+  width: 410px;
+}
+
+.profile__credential {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__credential_underlined {
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.profile__label {
+  color: #000;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 17px 0 17px 0;
+}
+
+.profile__label_text {
+  font-weight: 400;
+}
+
+.profile__buttons {
+  margin-top: 202px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__edit {
+  border: 0;
+  background-color: white;
+  color: #000;
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.profile__signout {
+  border: 0;
+  background-color: white;
+  color: #FF3055;
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.profile__save {
+  width: 410px;
+  height: 45px;
+  border: 0;
+  border-radius: 3px;
+  background: #3456F3;
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: none;
+  cursor: pointer;
+}
+
+.profile__edit:hover {
+  opacity: 0.5;
+}
+
+.profile__signout:hover {
+  opacity: 0.5;
+}
+
+.profile__save:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .profile {
+    margin: 236px auto 269px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile__credentials {
+    margin: 79px 0 0 0;
+  }
+
+  .profile__buttons {
+    margin-top: 193px;
+  }
+}
+
+@media (max-width: 450px) {
+  .profile {
+    margin: 70px auto 40px auto;
+  }
+
+  .profile__credentials {
+    width: 260px;
+    margin: 63px 0 0 0;
+  }
+
+  .profile__buttons {
+    margin-top: 361px;
+  }
+
+  .profile__edit {
+    font-size: 12px;
+  }
+
+  .profile__signout {
+    font-size: 12px;
+  }
+
+  .profile__save {
+    width: 260px;
+    font-size: 13px;
+  }
+}

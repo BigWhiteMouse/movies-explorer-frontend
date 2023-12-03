@@ -1,0 +1,134 @@
+.techs {
+  background: #F5F5F5;
+  padding: 101px 70px 100px 70px;
+}
+
+.techs__container {
+  max-width: 1280px;
+  margin: 0 auto 0 auto;
+}
+
+.techs__content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.techs__title {
+  color: #000;
+  text-align: center;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+  margin: 90px 0 26px 0;
+}
+
+.techs__text {
+  max-width: 460px;
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.56px;
+  margin: 0;
+}
+
+.techs__info-container {
+  display: flex;
+  margin: 100px 0 0 0;
+  justify-content: flex-start; /*не совсем понятно, как в данном случае будет корректно, на макете промежуточные
+  варианты не обозначены, но, предположим, так=)*/
+  max-width: 690px;
+  gap: 12px;
+}
+
+.techs__info {
+  width: 88px; /*for pixel perfect*/
+  height: 60px;
+  border-radius: 10px;
+  background: #E8E8E8;
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.56px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .techs {
+    padding: 92px 43px 90px 50px;
+  }
+
+  .techs__title {
+    margin: 81px 9px 21px 0; /*for pixel perfect*/
+  }
+
+  .techs__text {
+    max-width: 460px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.48px;
+    margin: 0 7px 0 0; /*for pixel perfect*/
+  }
+
+  .techs__info-container {
+    margin: 83px 0 0 0;
+    max-width: 648px;
+    gap: 8px;
+  }
+
+  .techs__info {
+    width: 84px; /*for pixel perfect*/
+    height: 57px;
+    font-size: 12px;
+    letter-spacing: -0.48px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .techs__info-container {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .techs {
+    padding: 69px 18px 70px 18px;
+  }
+
+  .techs__title {
+    margin: 48px 0 13px 0;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .techs__text {
+    max-width: 292px;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.44px;
+    margin: 0;
+  }
+
+  .techs__info-container {
+    margin: 50px 0 0 0;
+    max-width: 178px;
+  }
+
+  .techs__info {
+    margin-right: 0;
+  }
+
+}
