@@ -14,11 +14,18 @@ import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import moviesApi from "../../utils/MoviesApi";
 import {
-  BREAKPOINT_DESKTOP, BREAKPOINT_MOBILE,
+  BREAKPOINT_DESKTOP,
+  BREAKPOINT_MOBILE,
   BREAKPOINT_TABLET,
   DESKTOP_ADD_VALUE,
-  DESKTOP_INITIAL_VALUE,
-  LARGE_SCREEN_INITIAL_VALUE, MOBILE_ADD_VALUE, MOBILE_INITIAL_VALUE, MOVIES_BASE_URL, TABLET_ADD_VALUE, TABLET_INITIAL_VALUE
+  DESKTOP_INITIAL_VALUE, DURATION,
+  LARGE_SCREEN_ADD_VALUE,
+  LARGE_SCREEN_INITIAL_VALUE,
+  MOBILE_ADD_VALUE,
+  MOBILE_INITIAL_VALUE,
+  MOVIES_BASE_URL,
+  TABLET_ADD_VALUE,
+  TABLET_INITIAL_VALUE
 } from "../../utils/consts";
 import mainApi from "../../utils/MainApi";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
@@ -37,13 +44,13 @@ function App() {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [showMore, setShowMore] = React.useState(false);
   const [showedMovies, setShowedMovies] = React.useState(getFromLocalStorage('searchedMovies') || []);
-  const [addValue, setAddValue] = React.useState(4);
+  const [addValue, setAddValue] = React.useState(LARGE_SCREEN_ADD_VALUE);
   const [currentUser, setCurrentUser] = React.useState({});
   const [isLoggedIn, setIsLoggedIn] = React.useState(getFromLocalStorage('isLoggedIn') || false);
   const [registerValue, setRegisterValue] = React.useState({email: '', password: '', name: ''});
   const [loginValue, setLoginValue] = React.useState({email: '', password: ''});
   const [savedCards, setSavedCards] = React.useState([]);
-  const [showedMoviesSavedMovies, setShowedMoviesSavedMovies] = React.useState(savedCards);
+  const [showedMoviesSavedMovies, setShowedMoviesSavedMovies] = React.useState([]);
   const [nothingFoundSavedMovies, setNothingFoundSavedMovies] = React.useState(false);
   const [savedCardsSearchValue, setSavedCardsSearchValue] = React.useState('');
   const [savedCardsChecked, setSavedCardsChecked] = React.useState(false);
@@ -60,14 +67,18 @@ function App() {
           setCurrentUser({name: res.name, email: res.email});
           setIsLoggedIn(true);
         })
-        .then(res => {
+        .then(() => {
           mainApi.getCards()
             .then(cards => {
               setSavedCards(cards);
             })
         })
+        .then(() => {
+          if (location.pathname === '/signin' || location.pathname === '/signup') navigate('/');
+        })
         .catch(err => {
           err.then(message => setErrorStatus(message));
+          setIsLoggedIn(false);
           setIsSuccess(false);
           setInfoTooltipOpen(true);
           console.log(err);
@@ -76,7 +87,9 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    setShowedMoviesSavedMovies(savedCards);
+    if (savedCardsSearchValue === '' || (savedCards.length < showedMoviesSavedMovies.length)) {
+      setShowedMoviesSavedMovies(savedCards);
+    }
   }, [savedCards])
 
   React.useEffect(() => {
@@ -86,15 +99,6 @@ function App() {
   React.useEffect(() => {
     setCards(showedMovies);
   }, [showedMovies]);
-
-  React.useEffect(() => {
-    let cards = getFromLocalStorage('searchedMovies');
-    if (cards) {
-      resize();
-      setCards(cards);
-    }
-  }, []);
-
 
   React.useEffect(() => {
     function handleEscClose(e) {
@@ -113,6 +117,7 @@ function App() {
   function resize() {
     if (windowWidth >= BREAKPOINT_DESKTOP) {
       calculateMoviesValue(LARGE_SCREEN_INITIAL_VALUE);
+      setAddValue(LARGE_SCREEN_ADD_VALUE);
     }
     if (windowWidth < BREAKPOINT_DESKTOP && windowWidth > BREAKPOINT_TABLET) {
       calculateMoviesValue(DESKTOP_INITIAL_VALUE);
@@ -149,6 +154,16 @@ function App() {
     };
   }, []);
 
+  React.useEffect(() => {
+    const handleLoad = () => {
+      setIsSaved();
+    };
+    window.addEventListener('load', handleLoad);
+    return () => {
+      window.removeEventListener('load', handleLoad);
+    };
+  }, []);
+
   function getFromLocalStorage(item) {
     let result = localStorage.getItem(item);
     if (result) return JSON.parse(result);
@@ -176,14 +191,9 @@ function App() {
      const movieId = savedCards.find(i => i.movieId === card.id)._id;
      await mainApi.deleteCard(movieId)
        .then(res => {
-         mainApi.getCards()
-           .then(res => {
-             setSavedCards(res);
-             setSavedCardsSearchValue('');
-             setPreviousResults([]);
-             setInfoTooltipOpen(true);
-             setIsSuccess(true);
-           })
+         const newArray = showedMoviesSavedMovies.filter(i => i.movieId !== card.id);
+         setSavedCards(newArray);
+         setPreviousResults([]);
        })
        .catch(err => {
          console.log(err);
@@ -210,14 +220,10 @@ function App() {
       }
       await mainApi.createCard(body)
         .then(res => {
-          mainApi.getCards()
-            .then(res => {
-              setSavedCards(res);
-              setSavedCardsSearchValue('');
-              setPreviousResults([]);
-              setIsSuccess(true);
-              setInfoTooltipOpen(true);
-            })
+          setNothingFoundSavedMovies(false);
+          let results = showedMoviesSavedMovies.concat(res);
+          setSavedCards(results);
+          setPreviousResults([]);
         })
         .catch(err => {
           card.saved = false;
@@ -232,18 +238,13 @@ function App() {
   async function handleDeleteCard(card) {
     if (showedMovies.length) {
       const deletedCard = showedMovies.find(i => i.id === card.movieId);
-      deletedCard.saved = false;
+      if (deletedCard) deletedCard.saved = false;
     }
     await mainApi.deleteCard(card._id)
       .then(res => {
-        mainApi.getCards()
-          .then(res => {
-            setSavedCards(res);
-            setSavedCardsSearchValue('');
-            setPreviousResults([]);
-            setInfoTooltipOpen(true);
-            setIsSuccess(true);
-          })
+        const newArray = showedMoviesSavedMovies.filter(i => i.movieId !== card.movieId);
+        setSavedCards(newArray);
+        setPreviousResults([]);
       })
       .catch(err => {
         console.log(err);
@@ -257,7 +258,9 @@ function App() {
     if (showedMovies) {
       if (showedMovies?.length !== 0) {
         showedMovies.forEach(card => {
-          if (savedCards.some(i => i.movieId === card.id)) card.saved = true;
+          if (savedCards.some(i => i.movieId === card.id)) {
+            card.saved = true;
+          }
         })
       }
     }
@@ -285,7 +288,7 @@ function App() {
       movie.nameEN.toLowerCase().includes(searchValue.toLowerCase()))
     if (isChecked) {
       setToLocalStorage('searchedMoviesFull', searchResults);
-      searchResults = searchResults.filter(movie => movie.duration < 40);
+      searchResults = searchResults.filter(movie => movie.duration < DURATION);
     }
     else setToLocalStorage('searchedMoviesFull', searchResults);
     setToLocalStorage('searchedMovies', searchResults);
@@ -310,7 +313,7 @@ function App() {
       movie.nameRU.toLowerCase().includes(searchValue.toLowerCase()) ||
       movie.nameEN.toLowerCase().includes(searchValue.toLowerCase())
     )
-    if (isChecked) searchResults = searchResults.filter(movie => movie.duration < 40);
+    if (isChecked) searchResults = searchResults.filter(movie => movie.duration < DURATION);
     if (searchResults.length === 0) {
       setNothingFoundSavedMovies(true);
     }
@@ -585,6 +588,7 @@ function App() {
                 onSubmit = {handleRegister}
                 registerValue = {registerValue}
                 setRegisterValue = {setRegisterValue}
+                isLoggedIn = {isLoggedIn}
               />
             }
           />
@@ -595,6 +599,7 @@ function App() {
                 onSubmit = {handleLogin}
                 loginValue = {loginValue}
                 setLoginValue = {setLoginValue}
+                isLoggedIn = {isLoggedIn}
               />
             }
           />

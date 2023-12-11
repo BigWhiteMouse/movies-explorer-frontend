@@ -1,7 +1,7 @@
 import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({isLike, onLikeClick, cards, nothingFound, showMore, onShowMore, onDelete}) {
+function MoviesCardList({onLikeClick, cards, nothingFound, showMore, onShowMore, onDelete}) {
 
   function handleShowMore() {
     onShowMore();
@@ -16,7 +16,6 @@ function MoviesCardList({isLike, onLikeClick, cards, nothingFound, showMore, onS
             <MoviesCard
               key = {card.id}
               card={card}
-              isLike = {isLike}
               onLikeClick = {onLikeClick}
               onDelete = {onDelete}
             />

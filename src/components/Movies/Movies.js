@@ -3,7 +3,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function Movies({isLike, onLikeClick, onSearch, cards, onCheck, nothingFound, isSearchInProgress, showMore,
+function Movies({onLikeClick, onSearch, cards, onCheck, nothingFound, isSearchInProgress, showMore,
                   onShowMore}) {
 
   const searchValue = localStorage.getItem('searchValue')?.replaceAll('"', '');
@@ -28,7 +28,6 @@ function Movies({isLike, onLikeClick, onSearch, cards, onCheck, nothingFound, is
       />
       {isSearchInProgress && <Preloader/>}
       <MoviesCardList
-        isLike = {isLike}
         onLikeClick = {onLikeClick}
         cards = {cards}
         nothingFound={nothingFound}

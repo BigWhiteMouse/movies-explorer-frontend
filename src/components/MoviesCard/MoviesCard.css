@@ -9,6 +9,10 @@
   margin-bottom: 29px;
 }
 
+.movies-card__container:hover .movies-card__delete {
+  opacity: 1;
+}
+
 .movies-card__name {
   max-width: 226px;
   color: #000;
