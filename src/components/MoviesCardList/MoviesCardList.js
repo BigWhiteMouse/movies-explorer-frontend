@@ -1,32 +1,33 @@
 import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({isLike, onLikeClick}) {
+function MoviesCardList({isLike, onLikeClick, cards, nothingFound, showMore, onShowMore, onDelete}) {
 
-  /*это временная заглушка, чтобы посмотреть, как будут отображаться карточки, полученные от api*/
-  function getCardsTemporary() {
-    let array = [];
-    for (let i = 13; i < 29; i++) {
-     array.push({id: i});
-    }
-    return array;
+  function handleShowMore() {
+    onShowMore();
   }
-
-  const cards = getCardsTemporary();
 
   return (
     <section className="movies-card-list">
       <div className="movies-card-list__container">
+        {cards &&
         <ul className="movies-card-list__content-container">
           {cards.map((card, i) =>(
             <MoviesCard
               key = {card.id}
+              card={card}
               isLike = {isLike}
               onLikeClick = {onLikeClick}
+              onDelete = {onDelete}
             />
           ))}
-        </ul>
-        <button className="movies-card-list__more-button">Ещё</button>
+        </ul>}
+        {nothingFound &&
+          <p className="movies-card-list__nothing-found">Ничего не найдено</p>
+        }
+        {showMore &&
+          <button className="movies-card-list__more-button" onClick={handleShowMore}>Ещё</button>
+        }
       </div>
     </section>
   )

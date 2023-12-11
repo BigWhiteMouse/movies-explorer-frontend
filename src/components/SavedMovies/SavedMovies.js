@@ -3,12 +3,22 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function SavedMovies() {
+function SavedMovies({cards, onDelete, onSearch, onCheck, searchValue, nothingFound, getCheckedValue, setCheckedValue}) {
   return (
     <section className="movies">
-      <SearchForm/>
+      <SearchForm
+        onSearch = {onSearch}
+        onCheck = {onCheck}
+        searchValue = {searchValue}
+        getCheckedValue = {getCheckedValue}
+        setCheckedValue = {setCheckedValue}
+      />
       {/*<Preloader/>*/}
-      <MoviesCardList/>
+      <MoviesCardList
+        cards={cards}
+        onDelete = {onDelete}
+        nothingFound={nothingFound}
+      />
     </section>
   )
 }

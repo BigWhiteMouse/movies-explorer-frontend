@@ -5,7 +5,7 @@ import Navigation from "../Navigation/Navigation";
 import burgerIcon from "../../images/burger-icon.svg";
 import burgerIconBlack from "../../images/burger-icon-black.svg";
 
-function Header({onBurgerLinkClick, isBurgerOpened, onCloseBurgerClick, isLightTheme}) {
+function Header({onBurgerLinkClick, isBurgerOpened, onCloseBurgerClick, isLightTheme, isLoggedIn}) {
 
   function handleBurgerLinkClick() {
     onBurgerLinkClick();
@@ -21,23 +21,26 @@ function Header({onBurgerLinkClick, isBurgerOpened, onCloseBurgerClick, isLightT
         <Link to="/">
           <img className="header__logo" alt="Логотип проекта" src={headerLogo}/>
         </Link>
-        <Navigation
-          isBurgerOpened={isBurgerOpened}
-          onCloseBurgerClick={handleCloseBurgerClick}
-          isLightTheme={isLightTheme}
-        />
+        {
+          isLoggedIn ?
+            <Navigation
+              isBurgerOpened={isBurgerOpened}
+              onCloseBurgerClick={handleCloseBurgerClick}
+              isLightTheme={isLightTheme}
+            />
+          :
+            <nav className="header__navigation">
+              <Link to="/signup">
+                <button className="header__register-button">Регистрация</button>
+              </Link>
+              <Link to="/signin">
+                <button className="header__login-button">Войти</button>
+              </Link>
+            </nav>
+        }
         <div className="header__burger-link" onClick={handleBurgerLinkClick}>
           <img className="header__burger-icon" alt="Иконка бургер" src={isLightTheme ? burgerIconBlack : burgerIcon}/>
         </div>
-        {/*в последствии это будет работать по стейту isLoggedIn
-        <nav className="header__navigation">
-          <Link to="/signup">
-              <button className="header__register-button">Регистрация</button>
-          </Link>
-          <Link to="/signin">
-             <button className="header__login-button">Войти</button>
-          </Link>
-        </nav>*/}
       </div>
     </header>
   )

@@ -56,6 +56,11 @@
   font-weight: 400;
   line-height: normal;
   margin-top: 6px;
+  display: none;
+}
+
+.auth-form__error_visible {
+  display: block;
 }
 
 .auth-form__button {
@@ -70,10 +75,15 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  opacity: 0.3;
+}
+
+.auth-form__button_active {
+  opacity: 1;
   cursor: pointer;
 }
 
-.auth-form__button:hover {
+.auth-form__button_active:hover {
   opacity: 0.5;
 }
 
