@@ -2,3 +2,5 @@
 Вариант light-1
 
 Ссылка на pull request: https://github.com/BigWhiteMouse/movies-explorer-frontend/pull/2
+
+Ссылка на сайт: https://kimalkova.nomoredomainsmonster.ru/
