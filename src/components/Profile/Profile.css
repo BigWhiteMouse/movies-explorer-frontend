@@ -43,6 +43,17 @@
 
 .profile__label_text {
   font-weight: 400;
+  text-align: right;
+  border: none;
+}
+
+.profile__label_text:active, :hover {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.profile__label_text:focus {
+  outline: 1px solid #E8E8E8;
 }
 
 .profile__buttons {
@@ -54,12 +65,16 @@
 .profile__edit {
   border: 0;
   background-color: white;
-  color: #000;
+  color: #E8E8E8;
   text-align: center;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.profile__edit_active {
+  color: #000;
   cursor: pointer;
 }
 
@@ -92,7 +107,7 @@
   cursor: pointer;
 }
 
-.profile__edit:hover {
+.profile__edit_active:hover {
   opacity: 0.5;
 }
 

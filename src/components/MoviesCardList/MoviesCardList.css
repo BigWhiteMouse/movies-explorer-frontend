@@ -35,6 +35,14 @@
   line-height: normal;
 }
 
+.movies-card-list__nothing-found {
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 @media (max-width: 768px) {
   .movies-card-list {
     padding: 70px 30px 0 30px;
