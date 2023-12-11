@@ -1,7 +1,6 @@
 export const MOVIES_PATH = 'https://api.nomoreparties.co/beatfilm-movies';
 export const MOVIES_BASE_URL = 'https://api.nomoreparties.co';
 export const MAIN_PATH = 'https://api.kimalkova.nomoredomainsmonster.ru/'
-
 /*
 выше 1291 - 4 ряду
 1290 - 1014 - 3 в ряду
